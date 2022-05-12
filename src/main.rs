@@ -153,6 +153,7 @@ fn main() {
 
     let names = vec!["who", "are", "you"];
 
+    //iter allow reuse of the array
     for name in names.iter(){
         match name {
             &"you" => println!("Person of interest"),
@@ -161,4 +162,27 @@ fn main() {
     }
 
     println!("names: {:?}", names);
+
+
+    let cars = vec!["audi", "subaru", "bmw", "toyota"];
+
+    //into_iter doesnt allow reuse of array
+    for car in cars.into_iter(){
+        match car{
+            "toyota" => println!("there exits a huge number"),
+            _=>println!("its a great {}", car),
+        }
+    }
+
+    let mut sizes = vec!["big", "medium", "small", "others"];
+
+    //iter_mut allow mutation of array and doesnt allow println in its args
+    for size in sizes.iter_mut(){
+        *size = match size{
+            &mut "others" => "all sizes are great",
+           // _=> "type size great",
+        }
+    }
+
+    println!("sizes: {:?}", sizes);
 }
