@@ -2,6 +2,38 @@
 //import statement 
 use std::fmt;
 
+/* struct ListEdited(Vec<i32>);
+
+impl fmt::Display for ListEdited{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result{
+        let vec = &self.0;
+        write!(f, "[")?;
+
+        for(count, v) in vec.iter().enumerate(){
+            if count !=0 {
+                write!(f, ", ")?;
+            } write!(f, "{}", v)?;
+        }
+        write!(f, "]")
+    }
+} */
+
+struct List(Vec<i32>);
+
+impl fmt::Display for List{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result{
+        let vec = &self.0;
+
+        write!(f, "[")?;
+
+        for(count, v) in vec.iter().enumerate(){
+            if count != 0 { write!(f, ",")?;}
+            write!(f, "{}",v)?;
+        }
+        write!(f,"]")
+    }
+}
+
 #[derive(Debug)]
 struct RealNum{
     real: f64,
@@ -96,6 +128,37 @@ fn main() {
     println!("Display: {}", realpoints);
     println!("Debug: {:?}", realpoints);
 
-    let value = "who";
     //write!(f, "{}", value)?;
+    
+    let v = List(vec![1, 2, 3]);
+    println!("{}", v);
+
+    /* let w = ListEdited(vec![0: 1, 1: 2, 2: 3]);
+    println!("{}", w); */
+
+    //for loop
+    //exclusive ..
+    //inclusive ..=
+    for n in 1..11{
+        if n % 15 == 0{
+            println!("fizzbuzz");
+        }else if n % 3 == 0{
+            println!("fizz");
+        }else if n % 5 == 0{
+            println!("buzz");
+        }else{
+            println!("{}", n);
+        }
+    }
+
+    let names = vec!["who", "are", "you"];
+
+    for name in names.iter(){
+        match name {
+            &"you" => println!("Person of interest"),
+            _=>println!("Hello {}", name),
+        }
+    }
+
+    println!("names: {:?}", names);
 }
