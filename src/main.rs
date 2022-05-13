@@ -1,6 +1,25 @@
 //first rust project
 //import statement 
 use std::fmt;
+//use std::io;
+
+//#[derive(Debug)]
+struct Colors {
+    red:u8,
+    green:u8,
+    blue:u8,
+}
+
+
+
+impl fmt::Display for Colors{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result{
+        let hex = format!("{:02x}{:02x}{:02x}", self.red as u8, 
+                                    self.green as u8,
+                                     self.blue as u8);
+        write!(f, "RGB ({}, {}, {}, {})", self.red, self.green, self.blue, hex)
+    }
+}
 
 /* struct ListEdited(Vec<i32>);
 
@@ -180,9 +199,17 @@ fn main() {
     for size in sizes.iter_mut(){
         *size = match size{
             &mut "others" => "all sizes are great",
-           // _=> "type size great",
+            _=> "type size great",
         }
     }
 
     println!("sizes: {:?}", sizes);
+
+    for color in [
+        Colors {red: 128, green: 255, blue: 90},
+        Colors {red: 0, green: 3, blue: 254},
+        Colors {red: 0, green: 0, blue: 0},
+    ].iter(){
+        println!("{}", *color);
+    }
 }
