@@ -100,65 +100,55 @@ impl fmt::Display for Point2D {
         name: &'a str,
         age: u8
     }
-    
-fn main() {
-    let x = 5 + /* 90 + */ 5;
-    println!("Is `x` 10 or 100? x = {}", x);
-    println!("Hello, world! \n I'm a Rustacean!");
 
-    //formatted println
-    println!("{0}, this is {1}, {1} this is {0} and now lets talk about {subject} ", "alice", "john", subject="programing");
+    fn getting_known()-> String{
+        let convo = "good programmer";
+        convo.to_string()
+    }
 
-    println!("{} of {:b} people know binary, the other half doesn't", 1, 2);
+    fn hello_rust_prog(){
+        let x = 5 + 5;
+        println!("Is `x` 10 or 100? x = {}", x);
+        println!("Hello rustacean!");
 
-    println!("{number:>width$}", number=1, width=6);
-    println!("{number:0>width$}", number=1, width=6);
+        getting_known();
 
-    
-    
-    /* #[allow(dead_code)]
-    struct Structure(i32);
-    println!("This struct `{}` wont print...", Structure(3));
-    */
+        //formatted println
+        println!("{0}, this is {1}, {1} this is {0} and now lets talk about {subject}", "alice", "john", subject="programing");
+        println!("{} of {:b} people know binary, the order half doesn't ", 1, 2);
 
-  println!("This struct `{:?}` will print...", Structure(3));
-  println!("This struct `{:?}` will print...", Deep(Structure(8)));
+        println!("{number:>width$}", number=1, width=6);
+        println!("{number:0>width$}", number=1, width=6);
 
+    }
 
-    let pi = 3.141592;
+    fn person_struct(){
+        //struct person
+        let name = "cool";
+        let age = 24;
+        let cool = Person{name, age};
+        println!("{:#?}", cool);
+    }
 
-    println!("Pi is roughly{:.03}", pi);
+    fn number_struct(){
+        let minmax = MinMax(0, 14);
+        println!("Display: {}", minmax);
+        println!("Debug: {:?}", minmax);
 
-    //struct person
-    let name = "cool";
-    let age = 24;
-    let cool = Person{name, age};
-    println!("{:#?}", cool);
+        let point = Point2D {x:3.3, y:7.2};
+        println!("Display: {}", point);
+        println!("Debug: {:?}", point);
 
-    let minmax = MinMax(0, 14);
-    println!("Display: {}", minmax);
-    println!("Debug: {:?}", minmax);
+        let realpoints = RealNum{real:3.3, image:7.2};
+        println!("Display: {}", realpoints);
+        println!("Debug: {:?}", realpoints);
+    }
 
-    let point = Point2D {x:3.3, y:7.2};
-    println!("Display: {}", point);
-    println!("Debug: {:?}", point);
-
-    let realpoints = RealNum{real:3.3, image:7.2};
-    println!("Display: {}", realpoints);
-    println!("Debug: {:?}", realpoints);
-
-    //write!(f, "{}", value)?;
-    
-    let v = List(vec![1, 2, 3]);
-    println!("{}", v);
-
-    /* let w = ListEdited(vec![0: 1, 1: 2, 2: 3]);
-    println!("{}", w); */
-
-    //for loop
+    fn loop_function(){
+        //for loop
     //exclusive ..
     //inclusive ..=
-    for n in 1..11{
+         for n in 1..11{
         if n % 15 == 0{
             println!("fizzbuzz");
         }else if n % 3 == 0{
@@ -169,6 +159,8 @@ fn main() {
             println!("{}", n);
         }
     }
+
+
 
     let names = vec!["who", "are", "you"];
 
@@ -212,4 +204,70 @@ fn main() {
     ].iter(){
         println!("{}", *color);
     }
+
+    }
+    
+fn main() {
+
+    /* #[allow(dead_code)]
+    struct Structure(i32);
+    println!("This struct `{}` wont print...", Structure(3));
+    */
+
+  println!("This struct `{:?}` will print...", Structure(3));
+  println!("This struct `{:?}` will print...", Deep(Structure(8)));
+
+
+    let pi = 3.141592;
+
+    println!("Pi is roughly{:.03}", pi);
+
+    person_struct();
+
+    number_struct();
+
+    
+
+    //write!(f, "{}", value)?;
+    
+    let v = List(vec![1, 2, 3]);
+    println!("{}", v);
+
+    /* let w = ListEdited(vec![0: 1, 1: 2, 2: 3]);
+    println!("{}", w); */
+
+
+    loop_function();
+    
+   hello_rust_prog();
+
+    
+    let x = 5;
+    let x = x + 2;
+    println!("{}", x);
+
+    let tup: (i32, f64, u8) = (500, 6.4, 4);
+    let (x,y,z) = tup;
+    //println!("{},{},{}",tup.0,tup.1,tup.2);
+    println!("{},{},{}", x,y,z);
+    expression_function();
+    
+}
+
+
+fn expression_function(){
+    let x = 7;
+
+    let y = {
+        let x = 4;
+        x+1
+    };
+    println!("x:{} y:{}",x,y);
+
+    let z = return_value(5);
+    println!("z:{}", z);
+}
+
+fn return_value(x: i32) -> i32 {
+    x + 2
 }
